@@ -230,7 +230,7 @@ export default function ConsoleDashboard({ onNavigateToDeployments }) {
             <p className="text-[13px] text-white/35 font-normal leading-[1.65] mb-3">
               Coordinate bespoke multi-cloud architectural upgrades with our engineering team.
             </p>
-            <a href="https://sharexpress.in/#products" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+            <a href="https://distribution.sharexpress.in/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
               <span>Consult cloud architecture</span>
               <ArrowUpRight size={11} />
             </a>

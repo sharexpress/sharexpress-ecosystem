@@ -104,7 +104,7 @@ export default function App() {
             "@type": "Service",
             "name": "Distribution Services",
             "serviceType": "Systems Engineering & Infrastructure Consulting",
-            "url": "https://sharexpress.in/#products",
+            "url": "https://distribution.sharexpress.in/",
             "description": "Enterprise product engineering and systems consulting. Designing secure APIs, database clusters, and specialized server implementations."
           }
         },

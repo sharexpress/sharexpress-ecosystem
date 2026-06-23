@@ -90,9 +90,12 @@ export default function Contact() {
             </p>
 
             {/* Contact Cards */}
-            <div className="flex flex-col gap-3 mb-12">
+            <div className="flex flex-col gap-3 mb-12" itemScope itemType="https://schema.org/Organization">
+              <meta itemProp="name" content="ShareXpress" />
+              <meta itemProp="url" content="https://sharexpress.in" />
               <a 
                 href="mailto:contact@sharexpress.in"
+                itemProp="email"
                 onMouseMove={handleMouseMove}
                 className="flex items-center gap-4 px-6 py-5 premium-card group overflow-hidden"
                 style={{ '--glow-color': '139, 92, 246' }}

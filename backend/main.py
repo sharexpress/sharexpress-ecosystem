@@ -2,9 +2,10 @@ import os
 import json
 from datetime import datetime
 from typing import Optional
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
+from mailer import send_inquiry_email
 
 app = FastAPI(
     title="ShareXpress API Hub",
@@ -40,7 +41,7 @@ async def health_check():
     }
 
 @app.post("/api/contact", status_code=status.HTTP_201_CREATED)
-async def submit_contact(inquiry: ContactInquiry):
+async def submit_contact(inquiry: ContactInquiry, background_tasks: BackgroundTasks):
     try:
         # Create submission record
         submission = {
@@ -75,6 +76,15 @@ async def submit_contact(inquiry: ContactInquiry):
         print(f"  Email: {submission['email']}")
         print(f"  Company: {submission['company']}")
         print(f"  Message: {submission['message']}\n")
+
+        # Register background email sending task
+        background_tasks.add_task(
+            send_inquiry_email, 
+            inquiry.name, 
+            inquiry.email, 
+            inquiry.company or "N/A", 
+            inquiry.message
+        )
 
         return {"success": True, "message": "Inquiry successfully logged."}
 

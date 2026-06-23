@@ -48,7 +48,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://distribution.sharexpress.in" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline inline-flex items-center gap-1.5 group">
+                  <a href="https://sharexpress.in/#products" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline inline-flex items-center gap-1.5 group">
                     Distribution Services
                     <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>

@@ -104,7 +104,7 @@ export default function App() {
             "@type": "Service",
             "name": "Distribution Services",
             "serviceType": "Systems Engineering & Infrastructure Consulting",
-            "url": "https://services.sharexpress.in",
+            "url": "https://distribution.sharexpress.in",
             "description": "Enterprise product engineering and systems consulting. Designing secure APIs, database clusters, and specialized server implementations."
           }
         },
@@ -131,7 +131,7 @@ export default function App() {
         <title>ShareXpress — Autonomous Developer & Cloud Software Ecosystem</title>
         <link rel="canonical" href="https://sharexpress.in" />
         <meta name="description" content="ShareXpress is an umbrella technology corporation building and scaling a unified ecosystem of production-ready developer tools, cloud infrastructure, and software engines." />
-        <meta name="keywords" content="ShareXpress, Interleet, Distribution Services, Cloud Platform, autonomous software engines, systems engineering, developer tools, distributed databases, private cloud hosting, edge compute virtualization, tech stack, Santusht Kotai" />
+        <meta name="keywords" content="ShareXpress, Interleet, Distribution, Cloud Platform, autonomous software engines, systems engineering, developer tools, distributed databases, private cloud hosting, edge compute virtualization, tech stack, Santusht Kotai" />
         <meta name="author" content="ShareXpress Systems" />
         <meta name="robots" content="index, follow" />
         

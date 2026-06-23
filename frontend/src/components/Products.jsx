@@ -20,11 +20,11 @@ const PRODUCTS = [
     cta: 'Initialize Sandbox'
   },
   {
-    id: 'services',
+    id: 'distribution',
     name: 'Distribution Services',
     tagline: 'Enterprise System Engineering',
     description: 'Elite engineering execution. We design core software pipelines, implement zero-downtime database migrations, and construct scalable cloud topologies for organizations with complex requirements.',
-    link: 'https://services.sharexpress.in',
+    link: 'https://distribution.sharexpress.in',
     status: 'Active',
     icon: Code,
     features: ['High-Availability Design', 'Zero-Downtime Data Migration', 'Audited Infrastructure Pipelines'],

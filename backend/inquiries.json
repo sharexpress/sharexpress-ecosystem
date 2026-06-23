@@ -30,5 +30,29 @@
     "email": "agent@sharexpress.in",
     "company": "Antigravity",
     "message": "Automated verification of contact flow."
+  },
+  {
+    "id": 1782207513.016119,
+    "timestamp": "2026-06-23T15:08:33.016139",
+    "name": "Santusht Kotai Test",
+    "email": "santushtkotai1221@gmail.com",
+    "company": "ShareXpress Systems",
+    "message": "This is a direct API verification test to ensure the contact submission is successfully processed and emailed."
+  },
+  {
+    "id": 1782207624.499854,
+    "timestamp": "2026-06-23T15:10:24.499891",
+    "name": "Santusht Kotai",
+    "email": "santushtkotai1221@gmail.com",
+    "company": "N/A",
+    "message": "hi"
+  },
+  {
+    "id": 1782207643.837011,
+    "timestamp": "2026-06-23T15:10:43.837031",
+    "name": "Santusht Kotai",
+    "email": "santushtkotai1221@gmail.com",
+    "company": "N/A",
+    "message": "hi"
   }
 ]

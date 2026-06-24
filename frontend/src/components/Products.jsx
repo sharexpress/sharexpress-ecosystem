@@ -121,17 +121,21 @@ export default function Products() {
           {PRODUCTS.map((prod, idx) => {
             const Icon = prod.icon;
             const isComingSoon = prod.status === 'Coming Soon';
+            const CardComponent = isComingSoon ? motion.div : motion.a;
 
             return (
-              <motion.div 
+              <CardComponent 
                 key={prod.id}
+                href={isComingSoon ? undefined : prod.link}
+                target={isComingSoon ? undefined : "_blank"}
+                rel={isComingSoon ? undefined : "noopener noreferrer"}
                 custom={idx}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
                 onMouseMove={handleMouseMove}
-                className="premium-card p-8 md:p-9 flex flex-col justify-between group min-h-[520px] overflow-hidden"
+                className={`premium-card p-8 md:p-9 flex flex-col justify-between group min-h-[520px] overflow-hidden ${isComingSoon ? '' : 'cursor-pointer hover:border-white/20 transition-all duration-300'}`}
                 style={{ '--glow-color': prod.glowColor }}
               >
                 <div>
@@ -180,18 +184,15 @@ export default function Products() {
                       Preview Pending
                     </div>
                   ) : (
-                    <a 
-                      href={prod.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-between py-4 px-6 bg-white/[0.03] hover:bg-white hover:text-black border border-white/[0.06] hover:border-white rounded-2xl text-[13px] font-semibold tracking-[-0.005em] transition-all duration-500 group/btn"
+                    <div 
+                      className="w-full flex items-center justify-between py-4 px-6 bg-white/[0.03] group-hover:bg-white group-hover:text-black border border-white/[0.06] group-hover:border-white rounded-2xl text-[13px] font-semibold tracking-[-0.005em] transition-all duration-500"
                     >
                       <span>{prod.cta}</span>
-                      <ArrowUpRight size={15} className="transition-transform duration-300 group-hover/btn:translate-x-[2px] group-hover/btn:-translate-y-[2px]" />
-                    </a>
+                      <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
+                    </div>
                   )}
                 </div>
-              </motion.div>
+              </CardComponent>
             );
           })}
         </div>

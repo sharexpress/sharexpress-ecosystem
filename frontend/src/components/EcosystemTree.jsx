@@ -96,6 +96,7 @@ export default function EcosystemTree() {
       name: 'Interleet', 
       badge: 'Systems Training', 
       badgeActive: true, 
+      link: 'https://interleet.sharexpress.in',
       desc: 'Advanced training sandboxes for engineers. Master distributed systems, fault-tolerant architectures, and core DevOps operations under load.', 
       items: ['Distributed Topology Labs', 'Failure Domain Modeling', 'Automated Compute Grading'],
       glowColor: '139, 92, 246', 
@@ -107,6 +108,7 @@ export default function EcosystemTree() {
       name: 'Distribution Services',
       badge: 'Core Integration',
       badgeActive: true,
+      link: 'https://distribution.sharexpress.in/',
       desc: 'Enterprise product engineering and systems consulting. Designing secure APIs, database clusters, and specialized server implementations.',
       items: ['Custom Protocol Engineering', 'Database Virtualization', 'Enterprise Infrastructure'],
       glowColor: '6, 182, 212',
@@ -118,6 +120,7 @@ export default function EcosystemTree() {
       name: 'Cloud Platform',
       badge: 'Virtualization Runtime',
       badgeActive: false,
+      link: 'https://cloud.sharexpress.in',
       desc: 'A high-performance virtualized runtime. Host and run applications on a secure, globally distributed edge compute cluster.',
       items: ['Deterministic Compute', 'Global Load Balancing', 'Zero-Cold-Start Runtimes'],
       glowColor: '16, 185, 129',
@@ -129,6 +132,7 @@ export default function EcosystemTree() {
       name: 'Files Sharing',
       badge: 'Secure Storage',
       badgeActive: true,
+      link: 'https://files.sharexpress.in',
       desc: 'Secure, high-performance peer-to-peer and cloud-based object storage. Transfer files with end-to-end encryption, guest sandboxes, and instant global access.',
       items: ['End-to-End Encryption', 'Zero-Knowledge Storage', 'Ephemeral Guest Sandboxes'],
       glowColor: '59, 130, 246',
@@ -233,32 +237,38 @@ export default function EcosystemTree() {
 
           {/* Sub Node Cards */}
           <div className="w-full grid grid-cols-4 gap-6 z-20">
-            {NODES.map((node, idx) => (
-              <div 
-                key={idx}
-                ref={cardRefs[idx]}
-                onMouseMove={handleMouseMove}
-                className="premium-card p-7 bg-white/[0.015] backdrop-blur-xl flex flex-col overflow-hidden border border-white/[0.06] opacity-0"
-                style={{ '--glow-color': node.glowColor }}
-              >
-                {/* Card header */}
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-[16px] font-semibold tracking-[-0.01em] text-white">{node.name}</span>
-                  <span className={`premium-badge text-[9px] ${node.badgeClasses}`}>{node.badge}</span>
-                </div>
-                <p className="text-[13px] text-white/35 font-normal leading-[1.75] mb-5">
-                  {node.desc}
-                </p>
-                <div className="flex flex-col gap-2.5 border-t border-white/[0.05] pt-4 mt-auto">
-                  {node.items.map((item, i) => (
-                    <div key={i} className="text-[11px] text-white/25 font-normal flex items-center gap-2.5">
-                      <span className={`w-[4px] h-[4px] ${node.dotBg} rounded-full flex-shrink-0`}></span>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+            {NODES.map((node, idx) => {
+              const CardComponent = node.badgeActive ? 'a' : 'div';
+              return (
+                <CardComponent 
+                  key={idx}
+                  ref={cardRefs[idx]}
+                  onMouseMove={handleMouseMove}
+                  href={node.badgeActive ? node.link : undefined}
+                  target={node.badgeActive ? "_blank" : undefined}
+                  rel={node.badgeActive ? "noopener noreferrer" : undefined}
+                  className={`premium-card p-7 bg-white/[0.015] backdrop-blur-xl flex flex-col overflow-hidden border border-white/[0.06] opacity-0 ${node.badgeActive ? 'cursor-pointer hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300' : ''}`}
+                  style={{ '--glow-color': node.glowColor }}
+                >
+                  {/* Card header */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[16px] font-semibold tracking-[-0.01em] text-white">{node.name}</span>
+                    <span className={`premium-badge text-[9px] ${node.badgeClasses}`}>{node.badge}</span>
+                  </div>
+                  <p className="text-[13px] text-white/35 font-normal leading-[1.75] mb-5">
+                    {node.desc}
+                  </p>
+                  <div className="flex flex-col gap-2.5 border-t border-white/[0.05] pt-4 mt-auto">
+                    {node.items.map((item, i) => (
+                      <div key={i} className="text-[11px] text-white/25 font-normal flex items-center gap-2.5">
+                        <span className={`w-[4px] h-[4px] ${node.dotBg} rounded-full flex-shrink-0`}></span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </CardComponent>
+              );
+            })}
           </div>
         </div>
 
@@ -294,25 +304,37 @@ export default function EcosystemTree() {
             { ref: mobCard2Ref, ...NODES[1], tags: ['#CustomProtocols', '#Virtualization', '#InfraSovereignty'] },
             { ref: mobCard3Ref, ...NODES[2], tags: ['#EdgeHosting', '#Virtualization', '#CloudPlatform'] },
             { ref: mobCard4Ref, ...NODES[3], tags: ['#EncryptedStorage', '#P2PSharing', '#GuestSandboxes'] },
-          ].map((card, idx) => (
-            <div key={idx} ref={card.ref} onMouseMove={handleMouseMove} className="relative premium-card bg-white/[0.015] backdrop-blur-xl p-7 overflow-hidden" style={{ '--glow-color': card.glowColor }}>
-              <div className="absolute left-[-45px] top-7 w-7 h-7 rounded-full bg-black border border-white/[0.08] flex items-center justify-center">
-                <div className="w-[7px] h-[7px] rounded-full animate-pulse" style={{ backgroundColor: card.dotColor, boxShadow: `0 0 12px ${card.dotColor}` }}></div>
-              </div>
-              <div className="flex justify-between items-center mb-4">
-                <h4 className="text-[18px] font-semibold tracking-[-0.01em] text-white">{card.name}</h4>
-                <span className={`premium-badge text-[9px] ${card.badgeClasses}`}>{card.badge}</span>
-              </div>
-              <p className="text-[13px] font-normal text-white/35 leading-[1.75] mb-5">
-                {card.desc}
-              </p>
-              <div className="flex flex-wrap gap-2.5 pt-4 border-t border-white/[0.05]">
-                {card.tags.map((tag, i) => (
-                  <span key={i} className="text-[10px] text-white/20 font-medium px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.04]">{tag}</span>
-                ))}
-              </div>
-            </div>
-          ))}
+          ].map((card, idx) => {
+            const CardComponent = card.badgeActive ? 'a' : 'div';
+            return (
+              <CardComponent 
+                key={idx} 
+                ref={card.ref} 
+                onMouseMove={handleMouseMove} 
+                href={card.badgeActive ? card.link : undefined}
+                target={card.badgeActive ? "_blank" : undefined}
+                rel={card.badgeActive ? "noopener noreferrer" : undefined}
+                className={`relative premium-card bg-white/[0.015] backdrop-blur-xl p-7 overflow-hidden block ${card.badgeActive ? 'cursor-pointer hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300' : ''}`} 
+                style={{ '--glow-color': card.glowColor }}
+              >
+                <div className="absolute left-[-45px] top-7 w-7 h-7 rounded-full bg-black border border-white/[0.08] flex items-center justify-center">
+                  <div className="w-[7px] h-[7px] rounded-full animate-pulse" style={{ backgroundColor: card.dotColor, boxShadow: `0 0 12px ${card.dotColor}` }}></div>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-[18px] font-semibold tracking-[-0.01em] text-white">{card.name}</h4>
+                  <span className={`premium-badge text-[9px] ${card.badgeClasses}`}>{card.badge}</span>
+                </div>
+                <p className="text-[13px] font-normal text-white/35 leading-[1.75] mb-5">
+                  {card.desc}
+                </p>
+                <div className="flex flex-wrap gap-2.5 pt-4 border-t border-white/[0.05]">
+                  {card.tags.map((tag, i) => (
+                    <span key={i} className="text-[10px] text-white/20 font-medium px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.04]">{tag}</span>
+                  ))}
+                </div>
+              </CardComponent>
+            );
+          })}
         </div>
       </div>
     </section>

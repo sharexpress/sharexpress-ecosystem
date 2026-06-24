@@ -34,8 +34,8 @@ def send_inquiry_email(name: str, email: str, company: str, message: str):
     try:
         # Create message container
         msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"[Inbound Inquiry] {name} // ShareXpress"
-        msg["From"] = f"ShareXpress Gateway <{SMTP_SENDER}>"
+        msg["Subject"] = f"[Inbound Inquiry] {name} // sharexpress"
+        msg["From"] = f"sharexpress Gateway <{SMTP_SENDER}>"
         msg["To"] = SMTP_RECIPIENT
         msg["Reply-To"] = email
 

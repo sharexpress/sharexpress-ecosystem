@@ -8,8 +8,8 @@ from pydantic import BaseModel, EmailStr
 from mailer import send_inquiry_email
 
 app = FastAPI(
-    title="ShareXpress API Hub",
-    description="Backend services for ShareXpress parent brand website.",
+    title="sharexpress API Hub",
+    description="Backend services for sharexpress parent brand website.",
     version="1.0.0"
 )
 
@@ -37,7 +37,7 @@ async def health_check():
     return {
         "status": "healthy",
         "timestamp": datetime.utcnow().isoformat(),
-        "service": "ShareXpress Hub API"
+        "service": "sharexpress Hub API"
     }
 
 @app.post("/api/contact", status_code=status.HTTP_201_CREATED)

@@ -11,7 +11,8 @@ const STAGES = [
     dotColor: 'bg-cyan-400',
     items: [
       { name: 'Interleet', desc: 'Deploying simulated system challenges to train infrastructure engineers under production-like traffic.', glowColor: '139, 92, 246' },
-      { name: 'Distribution Services', desc: 'Executing custom protocol design, API integrations, and scalable cloud migrations for enterprise organizations.', glowColor: '6, 182, 212' }
+      { name: 'Distribution Services', desc: 'Executing custom protocol design, API integrations, and scalable cloud migrations for enterprise organizations.', glowColor: '6, 182, 212' },
+      { name: 'Files Sharing', desc: 'Providing end-to-end encrypted storage, high-speed object transfer, and temporary guest sharing workspaces.', glowColor: '59, 130, 246' }
     ]
   },
   {
@@ -70,7 +71,7 @@ export default function FutureEcosystem() {
             <span className="text-white/30 font-light">Strategy.</span>
           </h3>
           <p className="body-text text-[16px] max-w-[520px] leading-[1.8]">
-            ShareXpress scales through systemic integration of developer tools and compute layers. Each phase adds a key pillar to our interconnected architecture.
+            sharexpress scales through systemic integration of developer tools and compute layers. Each phase adds a key pillar to our interconnected architecture.
           </p>
         </motion.div>
 
@@ -115,7 +116,7 @@ export default function FutureEcosystem() {
                 </h4>
 
                 {/* Items */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className={`grid grid-cols-1 gap-4 ${stage.items.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
                   {stage.items.map((item, itemIdx) => (
                     <div 
                       key={itemIdx}

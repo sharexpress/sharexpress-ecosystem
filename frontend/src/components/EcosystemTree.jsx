@@ -23,12 +23,14 @@ export default function EcosystemTree() {
   const cardLRef = useRef(null);
   const cardCRef = useRef(null);
   const cardRRef = useRef(null);
+  const cardFilesRef = useRef(null);
   
   const mobLineRef = useRef(null);
   const mobMaskRectRef = useRef(null);
   const mobCard1Ref = useRef(null);
   const mobCard2Ref = useRef(null);
   const mobCard3Ref = useRef(null);
+  const mobCard4Ref = useRef(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -47,12 +49,12 @@ export default function EcosystemTree() {
 
       tl.to(rootNodeRef.current, { scale: 1.05, duration: 0.15 })
         .to(maskRectRef.current, { attr: { height: 140 }, duration: 0.6, ease: "none" })
-        .fromTo([cardLRef.current, cardCRef.current, cardRRef.current], 
+        .fromTo([cardLRef.current, cardCRef.current, cardRRef.current, cardFilesRef.current], 
           { opacity: 0, y: 18, scale: 0.94 },
           { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1 },
           "-=0.15"
         )
-        .to([cardLRef.current, cardCRef.current, cardRRef.current], {
+        .to([cardLRef.current, cardCRef.current, cardRRef.current, cardFilesRef.current], {
           borderColor: "rgba(255, 255, 255, 0.10)",
           duration: 0.2,
         });
@@ -73,7 +75,7 @@ export default function EcosystemTree() {
       });
 
       tl.to(mobMaskRectRef.current, { attr: { height: 100 }, duration: 0.8, ease: "none" })
-        .fromTo([mobCard1Ref.current, mobCard2Ref.current, mobCard3Ref.current],
+        .fromTo([mobCard1Ref.current, mobCard2Ref.current, mobCard3Ref.current, mobCard4Ref.current],
           { opacity: 0, x: -18 },
           { opacity: 1, x: 0, duration: 0.5, stagger: 0.2 },
           "-=0.6"
@@ -122,10 +124,21 @@ export default function EcosystemTree() {
       dotColor: 'rgb(16, 185, 129)',
       badgeClasses: 'border-emerald-500/20 text-emerald-400 bg-emerald-500/5',
       dotBg: 'bg-emerald-500/30'
+    },
+    {
+      name: 'Files Sharing',
+      badge: 'Secure Storage',
+      badgeActive: true,
+      desc: 'Secure, high-performance peer-to-peer and cloud-based object storage. Transfer files with end-to-end encryption, guest sandboxes, and instant global access.',
+      items: ['End-to-End Encryption', 'Zero-Knowledge Storage', 'Ephemeral Guest Sandboxes'],
+      glowColor: '59, 130, 246',
+      dotColor: 'rgb(59, 130, 246)',
+      badgeClasses: 'border-blue-500/20 text-blue-400 bg-blue-500/5',
+      dotBg: 'bg-blue-500/30'
     }
   ];
 
-  const cardRefs = [cardLRef, cardCRef, cardRRef];
+  const cardRefs = [cardLRef, cardCRef, cardRRef, cardFilesRef];
 
   return (
     <section 
@@ -163,8 +176,8 @@ export default function EcosystemTree() {
             onMouseMove={handleMouseMove}
             className="z-20 px-9 py-6 premium-card bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] flex flex-col items-center transition-all duration-500 shadow-[0_0_60px_rgba(255,255,255,0.02)] overflow-hidden"
           >
-            <img src={logoImg} alt="ShareXpress" className="w-7 h-7 object-contain mb-2.5 animate-breathe" />
-            <span className="text-[14px] font-bold tracking-[0.06em] text-white">SHAREXPRESS</span>
+            <img src={logoImg} alt="sharexpress" className="w-7 h-7 object-contain mb-2.5 animate-breathe" />
+            <span className="text-[14px] font-bold tracking-[0.06em] text-white">sharexpress</span>
             <span className="text-[10px] tracking-[0.08em] text-white/25 font-medium mt-1.5 uppercase">Root Organization</span>
           </div>
 
@@ -179,32 +192,39 @@ export default function EcosystemTree() {
               <mask id="treeMask">
                 <rect ref={maskRectRef} x="0" y="0" width="1200" height="0" fill="white" />
               </mask>
-              <linearGradient id="gradientL" x1="600" y1="0" x2="200" y2="140" gradientUnits="userSpaceOnUse">
+              <linearGradient id="gradientL1" x1="600" y1="0" x2="150" y2="140" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="rgba(255, 255, 255, 0.15)" />
                 <stop offset="100%" stopColor="rgba(139, 92, 246, 0.5)" />
               </linearGradient>
-              <linearGradient id="gradientC" x1="600" y1="0" x2="600" y2="140" gradientUnits="userSpaceOnUse">
+              <linearGradient id="gradientL2" x1="600" y1="0" x2="450" y2="140" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="rgba(255, 255, 255, 0.15)" />
                 <stop offset="100%" stopColor="rgba(6, 182, 212, 0.5)" />
               </linearGradient>
-              <linearGradient id="gradientR" x1="600" y1="0" x2="1000" y2="140" gradientUnits="userSpaceOnUse">
+              <linearGradient id="gradientR1" x1="600" y1="0" x2="750" y2="140" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="rgba(255, 255, 255, 0.15)" />
                 <stop offset="100%" stopColor="rgba(16, 185, 129, 0.5)" />
+              </linearGradient>
+              <linearGradient id="gradientR2" x1="600" y1="0" x2="1050" y2="140" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="rgba(255, 255, 255, 0.15)" />
+                <stop offset="100%" stopColor="rgba(59, 130, 246, 0.5)" />
               </linearGradient>
             </defs>
 
             <g mask="url(#treeMask)">
-              {/* Left branch */}
-              <path d="M 600 0 L 600 40 Q 600 50, 590 50 L 210 50 Q 200 50, 200 60 L 200 140" stroke="url(#gradientL)" strokeWidth="1.5" strokeLinecap="round" />
-              {/* Center branch */}
-              <path d="M 600 0 L 600 140" stroke="url(#gradientC)" strokeWidth="1.5" strokeLinecap="round" />
-              {/* Right branch */}
-              <path d="M 600 0 L 600 40 Q 600 50, 610 50 L 990 50 Q 1000 50, 1000 60 L 1000 140" stroke="url(#gradientR)" strokeWidth="1.5" strokeLinecap="round" />
+              {/* Branch 1 */}
+              <path d="M 600 0 L 600 35 Q 600 45, 590 45 L 160 45 Q 150 45, 150 55 L 150 140" stroke="url(#gradientL1)" strokeWidth="1.5" strokeLinecap="round" />
+              {/* Branch 2 */}
+              <path d="M 600 0 L 600 35 Q 600 45, 590 45 L 460 45 Q 450 45, 450 55 L 450 140" stroke="url(#gradientL2)" strokeWidth="1.5" strokeLinecap="round" />
+              {/* Branch 3 */}
+              <path d="M 600 0 L 600 35 Q 600 45, 610 45 L 740 45 Q 750 45, 750 55 L 750 140" stroke="url(#gradientR1)" strokeWidth="1.5" strokeLinecap="round" />
+              {/* Branch 4 */}
+              <path d="M 600 0 L 600 35 Q 600 45, 610 45 L 1040 45 Q 1050 45, 1050 55 L 1050 140" stroke="url(#gradientR2)" strokeWidth="1.5" strokeLinecap="round" />
 
               {/* Animated flow particles */}
-              <path d="M 600 0 L 600 40 Q 600 50, 590 50 L 210 50 Q 200 50, 200 60 L 200 140" stroke="url(#gradientL)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.2s' }} />
-              <path d="M 600 0 L 600 140" stroke="url(#gradientC)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.4s' }} />
-              <path d="M 600 0 L 600 40 Q 600 50, 610 50 L 990 50 Q 1000 50, 1000 60 L 1000 140" stroke="url(#gradientR)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.2s' }} />
+              <path d="M 600 0 L 600 35 Q 600 45, 590 45 L 160 45 Q 150 45, 150 55 L 150 140" stroke="url(#gradientL1)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.2s' }} />
+              <path d="M 600 0 L 600 35 Q 600 45, 590 45 L 460 45 Q 450 45, 450 55 L 450 140" stroke="url(#gradientL2)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.4s' }} />
+              <path d="M 600 0 L 600 35 Q 600 45, 610 45 L 740 45 Q 750 45, 750 55 L 750 140" stroke="url(#gradientR1)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.3s' }} />
+              <path d="M 600 0 L 600 35 Q 600 45, 610 45 L 1040 45 Q 1050 45, 1050 55 L 1050 140" stroke="url(#gradientR2)" strokeWidth="2" className="animated-flow-line" style={{ animationDelay: '0.5s' }} />
             </g>
 
             {/* Glowing top node */}
@@ -212,7 +232,7 @@ export default function EcosystemTree() {
           </svg>
 
           {/* Sub Node Cards */}
-          <div className="w-full grid grid-cols-3 gap-6 z-20">
+          <div className="w-full grid grid-cols-4 gap-6 z-20">
             {NODES.map((node, idx) => (
               <div 
                 key={idx}
@@ -262,10 +282,10 @@ export default function EcosystemTree() {
           {/* Parent Hub */}
           <div className="relative">
             <div className="absolute left-[-45px] top-1.5 w-7 h-7 rounded-[9px] flex items-center justify-center overflow-hidden">
-              <img src={logoImg} alt="ShareXpress" className="w-full h-full object-contain" />
+              <img src={logoImg} alt="sharexpress" className="w-full h-full object-contain" />
             </div>
             <span className="text-[10px] tracking-[0.08em] text-white/25 uppercase font-medium">Root Organization</span>
-            <h3 className="text-[22px] font-bold tracking-[-0.02em] text-white mt-1">SHAREXPRESS</h3>
+            <h3 className="text-[22px] font-bold tracking-[-0.02em] text-white mt-1">sharexpress</h3>
           </div>
 
           {/* Mobile cards */}
@@ -273,6 +293,7 @@ export default function EcosystemTree() {
             { ref: mobCard1Ref, ...NODES[0], tags: ['#Topology', '#ChaosEng', '#Compute'] },
             { ref: mobCard2Ref, ...NODES[1], tags: ['#CustomProtocols', '#Virtualization', '#InfraSovereignty'] },
             { ref: mobCard3Ref, ...NODES[2], tags: ['#EdgeHosting', '#Virtualization', '#CloudPlatform'] },
+            { ref: mobCard4Ref, ...NODES[3], tags: ['#EncryptedStorage', '#P2PSharing', '#GuestSandboxes'] },
           ].map((card, idx) => (
             <div key={idx} ref={card.ref} onMouseMove={handleMouseMove} className="relative premium-card bg-white/[0.015] backdrop-blur-xl p-7 overflow-hidden" style={{ '--glow-color': card.glowColor }}>
               <div className="absolute left-[-45px] top-7 w-7 h-7 rounded-full bg-black border border-white/[0.08] flex items-center justify-center">

@@ -22,11 +22,8 @@ export default function Footer() {
           {/* Brand Side */}
           <div className="flex flex-col justify-between max-w-[360px]">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <img src={logoImg} alt="ShareXpress" className="w-[20px] h-[20px] object-contain" />
-                <span className="text-[14px] tracking-[0.06em] text-white/90 font-medium">
-                  Share<span className="font-bold">Xpress</span>
-                </span>
+              <div className="flex items-center mb-6">
+                <img src={logoImg} alt="sharexpress" className="w-[20px] h-[20px] object-contain" />
               </div>
               <p className="text-[14px] font-normal text-white/30 leading-[1.8]">
                 An umbrella technology corporation building, incubating, and scaling production-ready developer systems and digital platforms.
@@ -50,6 +47,12 @@ export default function Footer() {
                 <li>
                   <a href="https://distribution.sharexpress.in/" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline inline-flex items-center gap-1.5 group">
                     Distribution Services
+                    <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://files.sharexpress.in" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline inline-flex items-center gap-1.5 group">
+                    Files Sharing
                     <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
@@ -118,7 +121,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-white/[0.05] gap-4">
           <p className="text-[12px] text-white/15 font-normal tracking-[0.01em]">
-            &copy; {currentYear} ShareXpress. All rights reserved.
+            &copy; {currentYear} sharexpress. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-emerald-400/60 rounded-full animate-pulse"></span>

@@ -68,7 +68,7 @@ export default function ConsoleAuth({ onLoginSuccess, onBackToLanding }) {
             Console Login
           </h2>
           <p className="text-[13px] text-white/35 font-normal">
-            Access the ShareXpress edge & compute dashboard.
+            Access the sharexpress edge & compute dashboard.
           </p>
         </div>
 

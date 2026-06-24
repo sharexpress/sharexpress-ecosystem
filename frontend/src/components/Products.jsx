@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, GraduationCap, Server, Cloud, Code } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, Server, Cloud, Code, HardDrive } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const PRODUCTS = [
@@ -39,7 +39,7 @@ const PRODUCTS = [
     id: 'cloud',
     name: 'Cloud Platform',
     tagline: 'Edge Runtime Platform',
-    description: 'The execution layer of the ShareXpress ecosystem. A serverless compute platform designed to deploy static code and containerized runtimes to global edge locations, eliminating cold starts.',
+    description: 'The execution layer of the sharexpress ecosystem. A serverless compute platform designed to deploy static code and containerized runtimes to global edge locations, eliminating cold starts.',
     link: 'https://cloud.sharexpress.in',
     status: 'Coming Soon',
     icon: Cloud,
@@ -50,6 +50,22 @@ const PRODUCTS = [
     accentBg: 'bg-emerald-500/5',
     accentDot: 'bg-emerald-400',
     cta: 'Request Early Alpha'
+  },
+  {
+    id: 'files',
+    name: 'Files Sharing',
+    tagline: 'Secure Cloud Storage',
+    description: 'A high-performance peer-to-peer and cloud-based object storage and transfer platform. Transfer files securely with end-to-end encryption, guest sandboxes, and instant global distribution.',
+    link: 'https://files.sharexpress.in',
+    status: 'Active',
+    icon: HardDrive,
+    features: ['End-to-End Encryption', 'Zero-Knowledge Storage', 'Ephemeral Guest Sandboxes'],
+    glowColor: '59, 130, 246',
+    accentColor: 'text-blue-400',
+    accentBorder: 'border-blue-500/20',
+    accentBg: 'bg-blue-500/5',
+    accentDot: 'bg-blue-400',
+    cta: 'Open Files Platform'
   }
 ];
 
@@ -101,7 +117,7 @@ export default function Products() {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {PRODUCTS.map((prod, idx) => {
             const Icon = prod.icon;
             const isComingSoon = prod.status === 'Coming Soon';

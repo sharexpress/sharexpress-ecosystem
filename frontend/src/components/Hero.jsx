@@ -26,7 +26,7 @@ export default function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
           </span>
           <span className="text-[12px] tracking-[0.04em] font-medium text-white/45 group-hover:text-white/60 transition-colors">
-            ShareXpress Core // Autonomous Developer Ecosystem
+            sharexpress Core // Autonomous Developer Ecosystem
           </span>
         </div>
 
@@ -47,7 +47,7 @@ export default function Hero() {
           className="max-w-[620px] text-white/40 text-[clamp(15px,1.7vw,18px)] font-normal leading-[1.8] tracking-[-0.005em] mb-14 animate-fade-in-up"
           style={{ animationDelay: '0.5s', animationFillMode: 'both' }}
         >
-          ShareXpress is an umbrella technology corporation. We design, deploy, and scale high-performance developer systems, cloud infrastructure, and software engines under a single, unified namespace.
+          sharexpress is an umbrella technology corporation. We design, deploy, and scale high-performance developer systems, cloud infrastructure, and software engines under a single, unified namespace.
         </p>
 
         {/* CTAs */}

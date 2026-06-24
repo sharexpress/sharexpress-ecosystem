@@ -54,11 +54,11 @@ export default function App() {
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": "https://sharexpress.in/#organization",
-      "name": "ShareXpress",
+      "name": "sharexpress",
       "url": "https://sharexpress.in",
       "logo": "https://sharexpress.in/logo.png",
       "image": "https://sharexpress.in/logo.png",
-      "description": "ShareXpress is an umbrella technology corporation building and scaling a unified ecosystem of production-ready developer tools, cloud infrastructure, and software engines.",
+      "description": "sharexpress is an umbrella technology corporation building and scaling a unified ecosystem of production-ready developer tools, cloud infrastructure, and software engines.",
       "founder": {
         "@type": "Person",
         "name": "Santusht Kotai",
@@ -74,7 +74,7 @@ export default function App() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": "https://sharexpress.in/#website",
-      "name": "ShareXpress",
+      "name": "sharexpress",
       "url": "https://sharexpress.in",
       "publisher": {
         "@id": "https://sharexpress.in/#organization"
@@ -83,7 +83,7 @@ export default function App() {
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "ShareXpress Digital Ecosystem Products",
+      "name": "sharexpress Digital Ecosystem Products",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -119,6 +119,18 @@ export default function App() {
             "url": "https://cloud.sharexpress.in",
             "description": "A high-performance virtualized runtime. Host and run applications on a secure, globally distributed edge compute cluster."
           }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Files Sharing",
+            "applicationCategory": "SecureStorageApplication",
+            "operatingSystem": "Linux, macOS, Windows, iOS, Android",
+            "url": "https://files.sharexpress.in",
+            "description": "Secure, lightning-fast peer-to-peer and cloud file sharing platform. Zero-knowledge encrypted storage, user auth, and real-time distribution."
+          }
         }
       ]
     }
@@ -128,26 +140,26 @@ export default function App() {
     <div className="relative w-full bg-black min-h-screen overflow-hidden">
       {/* Helmet SEO Management */}
       <Helmet>
-        <title>ShareXpress — Autonomous Developer & Cloud Software Ecosystem</title>
+        <title>sharexpress — Autonomous Developer & Cloud Software Ecosystem</title>
         <link rel="canonical" href="https://sharexpress.in" />
-        <meta name="description" content="ShareXpress is an umbrella technology corporation building and scaling a unified ecosystem of production-ready developer tools, cloud infrastructure, and software engines." />
-        <meta name="keywords" content="ShareXpress, Interleet, Distribution, Cloud Platform, autonomous software engines, systems engineering, developer tools, distributed databases, private cloud hosting, edge compute virtualization, tech stack, Santusht Kotai" />
-        <meta name="author" content="ShareXpress Systems" />
+        <meta name="description" content="sharexpress is an umbrella technology corporation building and scaling a unified ecosystem of production-ready developer tools, cloud infrastructure, and software engines." />
+        <meta name="keywords" content="sharexpress, Interleet, Distribution, Cloud Platform, Files Sharing, autonomous software engines, systems engineering, developer tools, distributed databases, private cloud hosting, edge compute virtualization, tech stack, Santusht Kotai" />
+        <meta name="author" content="sharexpress Systems" />
         <meta name="robots" content="index, follow" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sharexpress.in" />
-        <meta property="og:title" content="ShareXpress — Autonomous Developer & Cloud Software Ecosystem" />
-        <meta property="og:description" content="Explore ShareXpress, an umbrella technology corporation hosting specialized systems training, cloud platforms, and enterprise hosting runtimes." />
+        <meta property="og:title" content="sharexpress — Autonomous Developer & Cloud Software Ecosystem" />
+        <meta property="og:description" content="Explore sharexpress, an umbrella technology corporation hosting specialized systems training, cloud platforms, and enterprise hosting runtimes." />
         <meta property="og:image" content="https://sharexpress.in/logo.png" />
-        <meta property="og:site_name" content="ShareXpress" />
+        <meta property="og:site_name" content="sharexpress" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://sharexpress.in" />
-        <meta property="twitter:title" content="ShareXpress — Autonomous Developer & Cloud Software Ecosystem" />
-        <meta property="twitter:description" content="Explore ShareXpress, an umbrella technology corporation hosting specialized systems training, cloud platforms, and enterprise hosting runtimes." />
+        <meta property="twitter:title" content="sharexpress — Autonomous Developer & Cloud Software Ecosystem" />
+        <meta property="twitter:description" content="Explore sharexpress, an umbrella technology corporation hosting specialized systems training, cloud platforms, and enterprise hosting runtimes." />
         <meta property="twitter:image" content="https://sharexpress.in/logo.png" />
 
         {/* JSON-LD Schema */}

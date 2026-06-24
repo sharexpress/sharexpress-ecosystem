@@ -4,6 +4,8 @@ import { Search, Filter, Server, GitBranch, GitCommit, CheckCircle2, AlertCircle
 import CreateDeploymentModal from './CreateDeploymentModal';
 
 const INITIAL_DEPLOYMENTS = [
+  { name: 'files-sharing-frontend', slug: 'https://files.sharexpress.in', branch: 'main', commitMsg: 'fix: use dynamic GOOGLE_REDIRECT_URI in oauth', commitHash: 'ed0643f', status: 'Ready', created: '10 minutes ago' },
+  { name: 'files-sharing-backend', slug: 'https://files-backend.sharexpress.in', branch: 'main', commitMsg: 'fix: use dynamic GOOGLE_REDIRECT_URI in oauth', commitHash: 'ed0643f', status: 'Ready', created: '10 minutes ago' },
   { name: 'interleet-frontend', slug: 'https://interleet.sharexpress.app', branch: 'main', commitMsg: 'feat: add ai feedback logs system', commitHash: 'd3f7e12', status: 'Ready', created: '2 hours ago' },
   { name: 'services-portal', slug: 'https://services.sharexpress.app', branch: 'main', commitMsg: 'refactor: migrate database cluster targets', commitHash: '8b9c10a', status: 'Ready', created: '1 day ago' },
   { name: 'edge-router-proxy', slug: 'https://edge-proxy.sharexpress.app', branch: 'dev', commitMsg: 'fix: edge container caching timeouts', commitHash: 'a52f97c', status: 'Failed', errorMsg: 'SyntaxError: Unexpected token < in edge-router.js:23', created: '3 days ago' },

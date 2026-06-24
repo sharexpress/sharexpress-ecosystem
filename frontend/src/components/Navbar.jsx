@@ -65,11 +65,8 @@ export default function Navbar({ onNavigateConsole }) {
     >
       <div className="w-full flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center space-x-3 group" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-          <img src={logoImg} alt="ShareXpress" className="w-[24px] h-[24px] object-contain transition-all duration-500 group-hover:scale-110" />
-          <span className="text-[14px] tracking-[0.06em] text-white/90 font-medium">
-            Share<span className="font-bold">Xpress</span>
-          </span>
+        <a href="#" className="flex items-center group" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <img src={logoImg} alt="sharexpress" className="w-[24px] h-[24px] object-contain transition-all duration-500 group-hover:scale-110" />
         </a>
 
         {/* Desktop Navigation */}
@@ -119,11 +116,8 @@ export default function Navbar({ onNavigateConsole }) {
       }`}>
         {/* Mobile header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.04]">
-          <div className="flex items-center space-x-3">
-            <img src={logoImg} alt="ShareXpress" className="w-[24px] h-[24px] object-contain" />
-            <span className="text-[14px] tracking-[0.06em] text-white/90 font-medium">
-              Share<span className="font-bold">Xpress</span>
-            </span>
+          <div className="flex items-center">
+            <img src={logoImg} alt="sharexpress" className="w-[24px] h-[24px] object-contain" />
           </div>
           <button 
             onClick={() => setIsOpen(false)}

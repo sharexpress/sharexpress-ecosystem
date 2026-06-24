@@ -91,7 +91,7 @@ export default function Contact() {
 
             {/* Contact Cards */}
             <div className="flex flex-col gap-3 mb-12" itemScope itemType="https://schema.org/Organization">
-              <meta itemProp="name" content="ShareXpress" />
+              <meta itemProp="name" content="sharexpress" />
               <meta itemProp="url" content="https://sharexpress.in" />
               <a 
                 href="mailto:contact@sharexpress.in"
@@ -158,7 +158,7 @@ export default function Contact() {
                 </div>
                 <h4 className="text-[26px] font-semibold tracking-[-0.03em] text-white mb-3">Inquiry Received</h4>
                 <p className="text-[14px] text-white/35 font-normal max-w-sm leading-[1.75] mb-10">
-                  Thank you for contacting ShareXpress. Our systems engineering team will respond within 24 hours.
+                  Thank you for contacting sharexpress. Our systems engineering team will respond within 24 hours.
                 </p>
                 <button 
                   onClick={() => setSuccess(false)}

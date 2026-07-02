@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 
@@ -97,14 +98,14 @@ export default function Footer() {
               <h5 className="text-[11px] tracking-[0.08em] text-white/25 uppercase font-semibold mb-6">Legal</h5>
               <ul className="space-y-4">
                 <li>
-                  <a href="#" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline">
+                  <Link to="/terms" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline">
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline">
+                  <Link to="/privacy" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-[13px] font-normal text-white/35 hover:text-white/80 transition-colors duration-400 link-underline">

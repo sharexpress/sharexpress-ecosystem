@@ -73,6 +73,33 @@ const PRODUCTS = [
 
 export default function EcosystemTree() {
   const [hoveredProduct, setHoveredProduct] = useState(null);
+  const [products, setProducts] = useState(PRODUCTS);
+
+  React.useEffect(() => {
+    fetch('/api/status')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.files) {
+          setProducts((prev) =>
+            prev.map((p) => {
+              if (p.id === 'files') {
+                const status = data.files === 'Operational' ? 'ACTIVE' : 'MAINTENANCE';
+                const metric = data.files === 'Operational' ? 'LOAD: 8.4 MB/S // UPTIME: 99.99%' : 'STATUS: MAINTENANCE MODE';
+                const loadVal = data.files === 'Operational' ? 35 : 0;
+                return {
+                  ...p,
+                  status,
+                  metric,
+                  loadVal
+                };
+              }
+              return p;
+            })
+          );
+        }
+      })
+      .catch((err) => console.error('Failed to fetch ecosystem status:', err));
+  }, []);
 
   // Dynamic mouse spotlight coordinates tracker for premium hover card effects
   const handleMouseMove = (e) => {
@@ -152,7 +179,7 @@ export default function EcosystemTree() {
             <div className="relative flex-1 flex items-center justify-center">
               <svg className="w-full h-full" viewBox="0 0 320 340" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Branch Paths rendering */}
-                {PRODUCTS.map((prod) => {
+                {products.map((prod) => {
                   const isPathHovered = hoveredProduct === prod.id;
                   const pathColor = isPathHovered ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255,255,255,0.03)';
                   const strokeWidth = isPathHovered ? 1.5 : 1;
@@ -193,7 +220,7 @@ export default function EcosystemTree() {
                 </g>
 
                 {/* Product Target Nodes (Styled as Blade Units) */}
-                {PRODUCTS.map((prod) => {
+                {products.map((prod) => {
                   const isHovered = hoveredProduct === prod.id;
                   
                   return (
@@ -228,7 +255,7 @@ export default function EcosystemTree() {
                         cx="222" 
                         cy={prod.y} 
                         r="1.5" 
-                        fill={prod.status === 'ACTIVE' ? '#10b981' : prod.status === 'R&D CELL' ? '#a3a3a3' : '#f59e0b'}
+                        fill={prod.status === 'ACTIVE' ? '#10b981' : prod.status === 'R&D CELL' ? '#a3a3a3' : prod.status === 'MAINTENANCE' ? '#ec4899' : '#f59e0b'}
                         opacity="0.85"
                       />
 
@@ -264,7 +291,7 @@ export default function EcosystemTree() {
 
           {/* Right Product list cards column (Blade Unit designs) */}
           <div className="col-span-7 flex flex-col gap-3">
-            {PRODUCTS.map((prod) => {
+            {products.map((prod) => {
               const isHovered = hoveredProduct === prod.id;
               const Icon = prod.icon;
               const isFuture = prod.id === 'future';
@@ -298,6 +325,8 @@ export default function EcosystemTree() {
                     <span className={`text-[8px] font-mono tracking-wider border rounded px-1.5 py-0.5 ${
                       prod.status === 'ACTIVE' 
                         ? 'border-emerald-500/10 text-emerald-400 bg-emerald-500/[0.01]' 
+                        : prod.status === 'MAINTENANCE'
+                        ? 'border-[#ec4899]/10 text-[#ec4899] bg-[#ec4899]/[0.01]'
                         : prod.status === 'R&D CELL'
                         ? 'border-white/10 text-white/40 bg-white/[0.01]'
                         : 'border-white/5 text-white/25 bg-white/5'
@@ -342,7 +371,7 @@ export default function EcosystemTree() {
 
         {/* Mobile / Tablet Vertical Visual Stack */}
         <div className="lg:hidden flex flex-col gap-4 pl-4 border-l border-white/[0.04] text-left">
-          {PRODUCTS.map((prod) => {
+          {products.map((prod) => {
             const Icon = prod.icon;
             return (
               <div 

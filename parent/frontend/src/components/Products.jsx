@@ -77,6 +77,32 @@ const cardVariants = {
 };
 
 export default function Products() {
+  const [products, setProducts] = React.useState(PRODUCTS);
+
+  React.useEffect(() => {
+    fetch('/api/status')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.files) {
+          setProducts((prev) =>
+            prev.map((p) => {
+              if (p.id === 'files') {
+                const status = data.files;
+                const statusColor = status === 'Operational' ? 'bg-emerald-500' : 'bg-[#ec4899]';
+                return {
+                  ...p,
+                  status,
+                  statusColor
+                };
+              }
+              return p;
+            })
+          );
+        }
+      })
+      .catch((err) => console.error('Failed to fetch status:', err));
+  }, []);
+
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -130,7 +156,7 @@ export default function Products() {
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
-          {PRODUCTS.map((prod) => {
+          {products.map((prod) => {
             const Icon = prod.icon;
             const isAlpha = prod.id === 'cloud';
             const CardComponent = isAlpha ? motion.div : motion.a;

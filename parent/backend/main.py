@@ -41,6 +41,34 @@ async def health_check():
         "service": "sharexpress Hub API"
     }
 
+@app.get("/api/status")
+async def get_system_status():
+    import urllib.request
+    import urllib.error
+    
+    files_status = "Operational"
+    try:
+        req = urllib.request.Request(
+            "http://127.0.0.1",
+            headers={"Host": "files.sharexpress.in"}
+        )
+        with urllib.request.urlopen(req, timeout=3) as response:
+            if response.getcode() == 200:
+                files_status = "Operational"
+            else:
+                files_status = "Maintenance"
+    except urllib.error.HTTPError as e:
+        if e.code == 503:
+            files_status = "Maintenance"
+        else:
+            files_status = "Degraded"
+    except Exception:
+        files_status = "Offline"
+        
+    return {
+        "files": files_status
+    }
+
 @app.post("/api/contact", status_code=status.HTTP_201_CREATED)
 async def submit_contact(inquiry: ContactInquiry, background_tasks: BackgroundTasks):
     try:

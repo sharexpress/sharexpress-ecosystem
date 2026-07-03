@@ -76,6 +76,24 @@ def send_inquiry_email(name: str, email: str, company: str, message: str):
     .brand-accent {{
       color: #ffffff;
     }}
+    .brand-logo {{
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 0;
+      filter: invert(1);
+    }}
+    @media (prefers-color-scheme: light) {{
+      .brand-logo {{
+        filter: none !important;
+      }}
+    }}
+    @media (prefers-color-scheme: dark) {{
+      .brand-logo {{
+        filter: invert(1) !important;
+      }}
+    }}
     .badge {{
       display: inline-block;
       font-size: 10px;
@@ -149,7 +167,7 @@ def send_inquiry_email(name: str, email: str, company: str, message: str):
   <div class="container">
     <div class="header">
       <div class="brand">
-        <img src="https://sharexpress.in/logo.png" alt="sharexpress" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px; border: 0;" />
+        <img class="brand-logo" src="https://sharexpress.in/logo.png" alt="sharexpress" />
         <span style="vertical-align: middle;">share<span class="brand-accent">xpress</span> // Gatekeeper Service</span>
       </div>
     </div>
@@ -276,6 +294,24 @@ def send_acknowledgement_email(name: str, email: str, company: str, message: str
     .brand-accent {{
       color: #ffffff;
     }}
+    .brand-logo {{
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 0;
+      filter: invert(1);
+    }}
+    @media (prefers-color-scheme: light) {{
+      .brand-logo {{
+        filter: none !important;
+      }}
+    }}
+    @media (prefers-color-scheme: dark) {{
+      .brand-logo {{
+        filter: invert(1) !important;
+      }}
+    }}
     .badge {{
       display: inline-block;
       font-size: 10px;
@@ -366,7 +402,7 @@ def send_acknowledgement_email(name: str, email: str, company: str, message: str
   <div class="container">
     <div class="header">
       <div class="brand">
-        <img src="https://sharexpress.in/logo.png" alt="sharexpress" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px; border: 0;" />
+        <img class="brand-logo" src="https://sharexpress.in/logo.png" alt="sharexpress" />
         <span style="vertical-align: middle;">share<span class="brand-accent">xpress</span> // Gateway Service</span>
       </div>
     </div>

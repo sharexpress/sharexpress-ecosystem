@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, status, BackgroundTasks
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
-from mailer import send_inquiry_email
+from mailer import send_inquiry_email, send_acknowledgement_email
 
 app = FastAPI(
     title="sharexpress API Hub",
@@ -112,6 +112,13 @@ async def submit_contact(inquiry: ContactInquiry, background_tasks: BackgroundTa
             inquiry.name, 
             inquiry.email, 
             inquiry.company or "N/A", 
+            inquiry.message
+        )
+        background_tasks.add_task(
+            send_acknowledgement_email,
+            inquiry.name,
+            inquiry.email,
+            inquiry.company or "N/A",
             inquiry.message
         )
 

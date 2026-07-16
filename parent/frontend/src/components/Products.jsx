@@ -1,5 +1,21 @@
+/*
+ * Copyright 2026 Sharexpress Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import React from 'react';
-import { ArrowUpRight, GraduationCap, Code, Cloud, HardDrive } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, Code, Cloud, HardDrive, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const PRODUCTS = [
@@ -38,6 +54,18 @@ const PRODUCTS = [
     statusColor: 'bg-white/20',
     icon: Cloud,
     cta: 'Request Access'
+  },
+  {
+    id: 'assets',
+    name: 'AssetFlow',
+    tagline: 'ENTERPRISE ASSET MANAGEMENT',
+    description: 'A Linear-inspired SaaS physical inventory and lifecycle manager. Track equipment tags, generate compliance audit logs, and schedule assets via a keyboard-first layout.',
+    link: 'https://assets.sharexpress.in',
+    availability: 'Production Ready',
+    status: 'Operational',
+    statusColor: 'bg-emerald-500',
+    icon: ClipboardCheck,
+    cta: 'Manage Assets'
   },
   {
     id: 'files',

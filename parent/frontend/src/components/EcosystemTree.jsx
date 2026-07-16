@@ -1,5 +1,21 @@
+/*
+ * Copyright 2026 Sharexpress Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import React, { useState } from 'react';
-import { HardDrive, GraduationCap, Cloud, Code, GitFork, ArrowUpRight } from 'lucide-react';
+import { HardDrive, GraduationCap, Cloud, Code, GitFork, ArrowUpRight, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import logoImg from '../assets/logo.png';
 
@@ -14,7 +30,7 @@ const PRODUCTS = [
     loadVal: 35,
     desc: 'Secured peer-to-peer and cloud storage with end-to-end client-side encryption and guest sandboxes.',
     icon: HardDrive,
-    y: 50,
+    y: 40,
     link: 'https://files.sharexpress.in'
   },
   {
@@ -27,7 +43,7 @@ const PRODUCTS = [
     loadVal: 72,
     desc: 'Systems engineering grading sandbox. Practice fault tolerance and distributed challenge runs.',
     icon: GraduationCap,
-    y: 110,
+    y: 95,
     link: 'https://interleet.sharexpress.in'
   },
   {
@@ -40,20 +56,33 @@ const PRODUCTS = [
     loadVal: 15,
     desc: 'A serverless, zero-cold-start edge runtime for containerized code deployments.',
     icon: Cloud,
-    y: 170,
+    y: 150,
     link: 'https://cloud.sharexpress.in'
+  },
+  {
+    id: 'assets',
+    name: 'AssetFlow Manager',
+    tag: 'assets.sharexpress.in',
+    status: 'ACTIVE',
+    nodeHeader: 'CELL // INVENTORY_LIFECYCLE_04',
+    metric: 'ASSETS REGISTERED: 384 // STATUS: SECURE',
+    loadVal: 65,
+    desc: 'Linear-inspired enterprise asset and physical inventory tracking dashboard with compliance audits.',
+    icon: ClipboardCheck,
+    y: 205,
+    link: 'https://assets.sharexpress.in'
   },
   {
     id: 'apis',
     name: 'Distribution APIs',
     tag: 'api.sharexpress.in',
     status: 'ACTIVE',
-    nodeHeader: 'CELL // GATEWAY_INGRESS_04',
+    nodeHeader: 'CELL // GATEWAY_INGRESS_05',
     metric: 'REQUESTS: 4.8K/S // SECURITY: SECURE',
     loadVal: 54,
     desc: 'High-availability RPC and ingress routes for enterprise product distribution pipelines.',
     icon: Code,
-    y: 230,
+    y: 260,
     link: 'https://distribution.sharexpress.in/'
   },
   {
@@ -61,12 +90,12 @@ const PRODUCTS = [
     name: 'Future Products',
     tag: 'pipeline.research',
     status: 'R&D CELL',
-    nodeHeader: 'CELL // COMPILER_PIPELINE_05',
+    nodeHeader: 'CELL // COMPILER_PIPELINE_06',
     metric: 'STATUS: IN QUEUE // AGENT ID: 0x8F9A',
     loadVal: 0,
     desc: 'Audited CLI compilation tools and regional compliance nodes currently in system testing.',
     icon: GitFork,
-    y: 290,
+    y: 315,
     link: '#contact'
   }
 ];

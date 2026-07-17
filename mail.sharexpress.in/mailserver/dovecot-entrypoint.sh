@@ -29,10 +29,10 @@ chown dovecot:dovecot /etc/dovecot/users
 chmod 600 /etc/dovecot/users
 
 # Seed default mailboxes (idempotent, skip if already exists)
-/scripts/add_mailbox.sh "santusht@sharexpress.in" "${ADMIN_PASSWORD:-AdminPass123!}" 10 || true
-/scripts/add_mailbox.sh "support@sharexpress.in" "SupportPass123!" 2 || true
-/scripts/add_mailbox.sh "hr@sharexpress.in" "HRPass123!" 2 || true
-/scripts/add_mailbox.sh "noreply@sharexpress.in" "NoreplyPass123!" 1 || true
+bash /scripts/add_mailbox.sh "santusht@sharexpress.in" "${ADMIN_PASSWORD:-AdminPass123!}" 10 || true
+bash /scripts/add_mailbox.sh "support@sharexpress.in" "SupportPass123!" 2 || true
+bash /scripts/add_mailbox.sh "hr@sharexpress.in" "HRPass123!" 2 || true
+bash /scripts/add_mailbox.sh "noreply@sharexpress.in" "NoreplyPass123!" 1 || true
 
 echo "✅ Dovecot configuration applied. Starting..."
 

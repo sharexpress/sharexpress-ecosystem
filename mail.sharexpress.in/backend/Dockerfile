@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy installed packages from builder
-COPY --from=builder /root/.local /home/mailapp/.local
+COPY --from=builder --chown=mailapp:mailapp /root/.local /home/mailapp/.local
 
 # Copy source code
 COPY --chown=mailapp:mailapp . /app

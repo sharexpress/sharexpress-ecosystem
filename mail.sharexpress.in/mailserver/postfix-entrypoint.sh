@@ -90,15 +90,10 @@ echo "▶ [Postfix] Applying configuration..."
 cp /etc/postfix/custom/main.cf /etc/postfix/main.cf
 cp /etc/postfix/custom/master.cf /etc/postfix/master.cf
 
-# Build postmap lookup tables
+# Copy virtual mailboxes and alias lists (loaded as texthash in main.cf)
 echo "📦 [Postfix] Rebuilding virtual mailbox & alias maps..."
-postmap hash:/etc/postfix/custom/virtual_mailboxes
-postmap hash:/etc/postfix/custom/virtual_alias
-
 cp /etc/postfix/custom/virtual_mailboxes /etc/postfix/virtual_mailboxes
-cp /etc/postfix/custom/virtual_mailboxes.db /etc/postfix/virtual_mailboxes.db
 cp /etc/postfix/custom/virtual_alias /etc/postfix/virtual_alias
-cp /etc/postfix/custom/virtual_alias.db /etc/postfix/virtual_alias.db
 
 # Fix permissions
 chown -R root:postfix /var/mail/vhosts 2>/dev/null || true

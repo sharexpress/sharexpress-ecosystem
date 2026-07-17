@@ -15,8 +15,8 @@ mydestination           = localhost.localdomain, localhost
 # ─── Virtual Mailbox Domains (hosted domains) ────────────────────────────────
 virtual_transport               = lmtp:inet:dovecot:2400
 virtual_mailbox_domains         = /etc/postfix/custom/virtual_domains
-virtual_mailbox_maps            = hash:/etc/postfix/virtual_mailboxes
-virtual_alias_maps              = hash:/etc/postfix/virtual_alias
+virtual_mailbox_maps            = texthash:/etc/postfix/virtual_mailboxes
+virtual_alias_maps              = texthash:/etc/postfix/virtual_alias
 virtual_mailbox_base            = /var/mail/vhosts
 virtual_minimum_uid             = 5000
 virtual_uid_maps                = static:5000

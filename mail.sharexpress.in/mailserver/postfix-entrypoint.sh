@@ -35,7 +35,7 @@ fi
 
 # ─── 2. OpenDKIM Key Generation ───────────────────────────────────────────────
 mkdir -p "${DKIM_KEY_DIR}"
-chown -R opendkim:opendkim /etc/opendkim
+chown -R opendkim:opendkim /etc/opendkim/keys
 
 if [ ! -f "${DKIM_PRIVATE_KEY}" ]; then
     echo "🔑 [DKIM] No DKIM key found. Generating RSA-2048 DKIM keypair..."
@@ -73,6 +73,10 @@ cp /etc/opendkim/custom/opendkim.conf /etc/opendkim/opendkim.conf
 cp /etc/opendkim/custom/keytable /etc/opendkim/keytable
 cp /etc/opendkim/custom/signingtable /etc/opendkim/signingtable
 cp /etc/opendkim/custom/trustedhosts /etc/opendkim/trustedhosts
+
+# Set ownership of the copied configuration files & directories
+chown opendkim:opendkim /etc/opendkim/opendkim.conf /etc/opendkim/keytable /etc/opendkim/signingtable /etc/opendkim/trustedhosts
+chmod 644 /etc/opendkim/opendkim.conf /etc/opendkim/keytable /etc/opendkim/signingtable /etc/opendkim/trustedhosts
 
 opendkim -x /etc/opendkim/opendkim.conf
 echo "✅ [OpenDKIM] Milter running on inet:12301@localhost"

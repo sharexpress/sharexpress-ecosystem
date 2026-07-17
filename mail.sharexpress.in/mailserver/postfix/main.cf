@@ -132,23 +132,23 @@ smtpd_soft_error_limit               = 5
 smtpd_error_sleep_time               = 5s
 
 # ─── Message Size Limits ──────────────────────────────────────────────────────
-message_size_limit              = 52428800   # 50 MB per message
-mailbox_size_limit              = 0          # Unlimited (Dovecot handles quota)
+message_size_limit              = 52428800
+mailbox_size_limit              = 0
 virtual_mailbox_limit           = 0
 
 # ─── Queue Parameters ────────────────────────────────────────────────────────
-maximal_queue_lifetime          = 5d         # Keep undeliverable mail 5 days
-bounce_queue_lifetime           = 1d         # Bounce if undeliverable after 1 day
-delay_warning_time              = 4h         # Warn sender after 4h delay
-minimal_backoff_time            = 300s       # Min 5 min between retries
-maximal_backoff_time            = 4000s      # Max ~67 min between retries
-qmgr_message_active_limit       = 20000      # Max messages in active queue
-qmgr_message_recipient_limit    = 1000       # Max recipients per queue run
+maximal_queue_lifetime          = 5d
+bounce_queue_lifetime           = 1d
+delay_warning_time              = 4h
+minimal_backoff_time            = 300s
+maximal_backoff_time            = 4000s
+qmgr_message_active_limit       = 20000
+qmgr_message_recipient_limit    = 1000
 
 # ─── Performance / Concurrency ───────────────────────────────────────────────
 default_process_limit           = 100
-smtp_destination_concurrency_limit = 20      # Max parallel connections to one destination
-smtp_destination_rate_delay     = 1s         # Slight delay between per-destination connections
+smtp_destination_concurrency_limit = 20
+smtp_destination_rate_delay     = 1s
 local_destination_concurrency_limit = 4
 
 # ─── Header Cleanup ──────────────────────────────────────────────────────────

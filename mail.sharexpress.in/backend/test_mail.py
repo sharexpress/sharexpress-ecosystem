@@ -3,6 +3,7 @@ import poplib
 import time
 from email.mime.text import MIMEText
 from email.parser import BytesParser
+from email.utils import formatdate
 
 def test_smtp_and_pop3():
     sender = "support@sharexpress.in"
@@ -16,6 +17,7 @@ def test_smtp_and_pop3():
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = recipient
+    msg['Date'] = formatdate(localtime=True)
     
     try:
         with smtplib.SMTP('127.0.0.1', 25) as server:

@@ -23,6 +23,11 @@ if [ ! -f /etc/dovecot/ssl/fullchain.pem ] || [ ! -f /etc/dovecot/ssl/privkey.pe
     echo "✅ Self-signed SSL certs generated."
 fi
 
+# Ensure mail directory permissions are correct
+chown -R vmail:vmail /var/mail/vhosts
+chmod 770 /var/mail/vhosts
+
+
 # Initialize dovecot virtual users file
 touch /etc/dovecot/users
 chown dovecot:dovecot /etc/dovecot/users

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   Inbox, Send, FileText, Trash2, ShieldAlert, Archive, 
-  Settings, SquarePen, LogOut, Users 
+  Settings, Edit, LogOut, Users 
 } from 'lucide-react';
 import { setFolder } from '../store/mailSlice';
 import { openCompose, toggleAdminPanel } from '../store/uiSlice';
@@ -51,7 +51,7 @@ const Sidebar = () => {
           onClick={() => dispatch(openCompose())}
           className="w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium shadow-md shadow-blue-500/10 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
         >
-          <SquarePen size={18} />
+          <Edit size={18} />
           <span>New Message</span>
         </button>
       </div>

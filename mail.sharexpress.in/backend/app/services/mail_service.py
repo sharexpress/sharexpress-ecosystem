@@ -50,9 +50,30 @@ class MailService:
         return email
 
     @staticmethod
+    async def _resolve_attachments(db: AsyncIOMotorDatabase, attachment_ids: List[str], owner: str) -> List[Dict[str, Any]]:
+        """Resolve a list of attachment IDs to complete metadata dicts."""
+        if not attachment_ids:
+            return []
+        
+        cursor = db.attachments.find({"_id": {"$in": attachment_ids}, "uploaded_by": owner})
+        attachments = []
+        async for doc in cursor:
+            attachments.append({
+                "id": doc["_id"],
+                "filename": doc["filename"],
+                "content_type": doc["content_type"],
+                "size_bytes": doc["size_bytes"],
+                "url": f"/api/v1/mail/attachment/{doc['_id']}",
+                "storage_key": doc["storage_key"]
+            })
+        return attachments
+
+    @staticmethod
     async def create_draft(db: AsyncIOMotorDatabase, owner: str, draft_data: DraftSave) -> Dict[str, Any]:
         """Create or update a draft email."""
         now = datetime.now(timezone.utc)
+        resolved_attachments = await MailService._resolve_attachments(db, draft_data.attachment_ids, owner)
+        
         draft_doc = {
             "owner": owner,
             "folder": "drafts",
@@ -68,7 +89,8 @@ class MailService:
             "labels": [],
             "date": now,
             "created_at": now,
-            "attachments": []
+            "attachments": resolved_attachments,
+            "has_attachments": len(resolved_attachments) > 0
         }
         res = await db.emails.insert_one(draft_doc)
         draft_doc["id"] = str(res.inserted_id)
@@ -79,6 +101,29 @@ class MailService:
         """Triggered from composer. Sends email via SMTP and stores in Sent folder."""
         now = datetime.now(timezone.utc)
         
+        # Resolve attachments metadata
+        resolved_attachments = await MailService._resolve_attachments(db, req.attachment_ids, owner)
+        
+        # Fetch attachment binaries from MinIO for outgoing SMTP mime compile
+        smtp_attachments = []
+        if resolved_attachments:
+            from app.services.attachment_service import AttachmentService
+            for att in resolved_attachments:
+                try:
+                    body_stream, content_type = await AttachmentService.get_attachment_stream(att["storage_key"])
+                    file_bytes = body_stream.read()  # blocking read of stream data bytes
+                    smtp_attachments.append({
+                        "filename": att["filename"],
+                        "content_type": content_type,
+                        "data": file_bytes
+                    })
+                except Exception as e:
+                    logger.error("Failed to fetch S3 attachment body for sending: %s", e)
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail=f"Failed to fetch S3 attachment '{att['filename']}' for email transmission."
+                    )
+
         # Send via SMTP
         sent_success = await SMTPService.send_email(
             from_address=owner,
@@ -87,7 +132,8 @@ class MailService:
             body_html=req.body_html,
             body_text=req.body_text,
             cc=req.cc,
-            bcc=req.bcc
+            bcc=req.bcc,
+            attachments=smtp_attachments
         )
 
         if not sent_success:
@@ -112,7 +158,8 @@ class MailService:
             "labels": [],
             "date": now,
             "created_at": now,
-            "attachments": []
+            "attachments": resolved_attachments,
+            "has_attachments": len(resolved_attachments) > 0
         }
         
         res = await db.emails.insert_one(email_doc)

@@ -18,6 +18,11 @@ async def lifespan(app: FastAPI):
     """Startup and shutdown lifecycle."""
     await connect_db()
     await seed_admin()
+    
+    # Ensure S3 attachment bucket exists
+    from app.services.attachment_service import AttachmentService
+    await AttachmentService.ensure_bucket()
+    
     yield
     await close_db()
 

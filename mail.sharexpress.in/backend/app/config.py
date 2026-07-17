@@ -42,6 +42,14 @@ class Settings(BaseSettings):
     ATTACHMENT_DIR: str = "/app/attachments"
     MAX_ATTACHMENT_SIZE_MB: int = 25
 
+    # MinIO S3 Settings
+    MINIO_ACCESS_KEY: str = "sharexpress_service"
+    MINIO_SECRET_KEY: str = "superStrongPassword123"
+    MINIO_REGION: str = "us-east-1"
+    MINIO_BUCKET: str = "mail-attachments"
+    MINIO_ENDPOINT_INTERNAL: str = "http://192.168.29.104:9000"
+    MINIO_ENDPOINT_PUBLIC: str = "https://drive.sharexpress.in"
+
     # Rate limiting
     RATE_LIMIT_PER_MINUTE: int = 60
     SMTP_RATE_LIMIT_PER_HOUR: int = 500

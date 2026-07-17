@@ -46,6 +46,24 @@ export const mailApi = {
     return response.data;
   },
 
+  uploadAttachment: async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await apiClient.post('/mail/attachment/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return response.data;
+  },
+
+  downloadAttachment: async (url) => {
+    const response = await apiClient.get(url, {
+      responseType: 'blob'
+    });
+    return response;
+  },
+
   // Admin APIs
   adminListUsers: async () => {
     const response = await apiClient.get('/admin/users');

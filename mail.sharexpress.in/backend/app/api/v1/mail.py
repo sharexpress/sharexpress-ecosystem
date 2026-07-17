@@ -1,5 +1,5 @@
 """FastAPI routes for mail operations."""
-from fastapi import APIRouter, Depends, status, Query
+from fastapi import APIRouter, Depends, status, Query, HTTPException
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from typing import List, Optional
 
@@ -82,3 +82,46 @@ async def purge_emails(
     """Permanently delete specified emails (bypass Trash)."""
     deleted = await MailService.delete_permanently(db, current_user["email"], email_ids)
     return {"deleted_count": deleted, "status": "success"}
+
+
+# ─── Attachment Storage Endpoints (MinIO integration) ───────────────────────
+from fastapi import UploadFile, File
+from fastapi.responses import StreamingResponse
+from app.services.attachment_service import AttachmentService
+
+@router.post("/attachment/upload", status_code=status.HTTP_201_CREATED)
+async def upload_attachment(
+    file: UploadFile = File(...),
+    db: AsyncIOMotorDatabase = Depends(get_database),
+    current_user: dict = Depends(get_current_user)
+):
+    """Upload email attachment to S3 storage bucket."""
+    return await AttachmentService.upload_attachment(db, file, current_user["email"])
+
+@router.get("/attachment/{attachment_id}")
+async def get_attachment(
+    attachment_id: str,
+    db: AsyncIOMotorDatabase = Depends(get_database),
+    current_user: dict = Depends(get_current_user)
+):
+    """Authenticated endpoint to download attachment from S3."""
+    # Find email where attachment belongs to this user to prevent horizontal privilege escalation
+    email_doc = await db.emails.find_one({
+        "owner": current_user["email"],
+        "attachments.id": attachment_id
+    })
+    
+    if not email_doc:
+        raise HTTPException(status_code=404, detail="Attachment metadata not found or access denied.")
+        
+    # Get exact filename and content type
+    target_att = next(att for att in email_doc["attachments"] if att["id"] == attachment_id)
+    
+    stream, content_type = await AttachmentService.get_attachment_stream(target_att["storage_key"])
+    
+    return StreamingResponse(
+        stream,
+        media_type=content_type,
+        headers={"Content-Disposition": f'attachment; filename="{target_att["filename"]}"'}
+    )
+

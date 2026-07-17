@@ -63,6 +63,23 @@ const EmailView = () => {
     }));
   };
 
+  const handleDownload = async (url, filename) => {
+    try {
+      const response = await mailApi.downloadAttachment(url);
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl);
+    } catch (err) {
+      alert('Failed to download file: ' + err.message);
+    }
+  };
+
   const cleanHTML = selectedEmail.body_html 
     ? DOMPurify.sanitize(selectedEmail.body_html) 
     : `<p style="white-space: pre-wrap;">${selectedEmail.body_text || ''}</p>`;
@@ -175,13 +192,13 @@ const EmailView = () => {
                       <span className="text-[10px] text-white/30">{(att.size_bytes / 1024 / 1024).toFixed(2)} MB</span>
                     </div>
                   </div>
-                  <a 
-                    href={att.url} 
-                    download 
+                  <button
+                    onClick={() => handleDownload(att.url, att.filename)}
                     className="p-2 bg-white/5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover:opacity-100"
+                    title="Download attachment"
                   >
                     <Download size={14} />
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>

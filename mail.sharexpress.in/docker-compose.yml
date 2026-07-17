@@ -27,109 +27,6 @@ x-backend-common: &backend-common
     - mail-net
 
 services:
-  # ─── Nginx Reverse Proxy ────────────────────────────────────────────────────
-  nginx:
-    image: nginx:alpine
-    container_name: mail-nginx
-    ports:
-      - "8082:80"
-      - "8443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./ssl:/etc/nginx/ssl:ro
-      - nginx-logs:/var/log/nginx
-    depends_on:
-      - frontend
-      - backend
-    restart: unless-stopped
-    networks:
-      - mail-net
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
-          memory: 256M
-
-  # ─── React Frontend ──────────────────────────────────────────────────────────
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        - VITE_API_URL=https://api.mail.sharexpress.in/api/v1
-    container_name: mail-frontend
-    restart: unless-stopped
-    networks:
-      - mail-net
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 128M
-
-  # ─── FastAPI Backend ──────────────────────────────────────────────────────────
-  backend:
-    <<: *backend-common
-    container_name: mail-backend
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 25s
-    deploy:
-      resources:
-        limits:
-          cpus: "2"
-          memory: 512M
-
-  # ─── Celery Worker: High + Normal Priority ──────────────────────────────────
-  celery-worker-main:
-    <<: *backend-common
-    container_name: mail-celery-main
-    command: >
-      celery -A app.workers.mail_worker worker
-      --loglevel=info
-      --concurrency=8
-      --queues=mail_high,mail_normal,mail_retry
-      --hostname=worker-main@%h
-    deploy:
-      resources:
-        limits:
-          cpus: "2"
-          memory: 512M
-
-  # ─── Celery Worker: Bulk (rate-limited) ─────────────────────────────────────
-  celery-worker-bulk:
-    <<: *backend-common
-    container_name: mail-celery-bulk
-    command: >
-      celery -A app.workers.mail_worker worker
-      --loglevel=info
-      --concurrency=2
-      --queues=mail_bulk
-      --hostname=worker-bulk@%h
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 256M
-
-  # ─── Celery Beat (Scheduler) ─────────────────────────────────────────────────
-  celery-beat:
-    <<: *backend-common
-    container_name: mail-celery-beat
-    command: >
-      celery -A app.workers.mail_worker beat
-      --loglevel=info
-      --schedule=/tmp/celerybeat-schedule
-    deploy:
-      resources:
-        limits:
-          cpus: "0.25"
-          memory: 128M
-
   # ─── MongoDB ─────────────────────────────────────────────────────────────────
   mongodb:
     image: mongo:7
@@ -185,6 +82,7 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
     ports:
+      - "127.0.0.1:5672:5672"
       - "127.0.0.1:15672:15672"  # Management UI (localhost only)
     restart: unless-stopped
     networks:

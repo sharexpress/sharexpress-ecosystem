@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy installed packages from builder
-COPY --from=builder --chown=mailapp:mailapp /root/.local /home/mailapp/.local
+COPY --from=builder --chown=mailapp:mailapp /root/.local /app/.local
 
 # Copy source code
 COPY --chown=mailapp:mailapp . /app
@@ -34,7 +34,7 @@ COPY --chown=mailapp:mailapp . /app
 # Switch to non-root
 USER mailapp
 
-ENV PATH=/home/mailapp/.local/bin:$PATH
+ENV PATH=/app/.local/bin:$PATH
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 

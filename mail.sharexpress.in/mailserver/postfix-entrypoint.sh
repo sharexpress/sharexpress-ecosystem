@@ -94,6 +94,7 @@ cp /etc/postfix/custom/master.cf /etc/postfix/master.cf
 echo "📦 [Postfix] Rebuilding virtual mailbox & alias maps..."
 cp /etc/postfix/custom/virtual_mailboxes /etc/postfix/virtual_mailboxes
 cp /etc/postfix/custom/virtual_alias /etc/postfix/virtual_alias
+cp /etc/postfix/custom/smtp_header_checks /etc/postfix/smtp_header_checks
 
 # Fix permissions
 chown -R root:postfix /var/mail/vhosts 2>/dev/null || true

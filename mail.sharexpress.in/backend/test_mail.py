@@ -32,10 +32,10 @@ def test_smtp_and_pop3():
     print("Waiting 4 seconds for delivery...")
     time.sleep(4)
 
-    # 3. Retrieve via POP3
-    print(f"Connecting to POP3 server at 127.0.0.1:110...")
+    # 3. Retrieve via POP3S
+    print(f"Connecting to POP3 SSL server at 127.0.0.1:995...")
     try:
-        pop = poplib.POP3('127.0.0.1', 110)
+        pop = poplib.POP3_SSL('127.0.0.1', 995)
         print("Sending user...")
         pop.user(recipient)
         print("Sending password...")

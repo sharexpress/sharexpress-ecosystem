@@ -18,7 +18,7 @@
 
 myhostname              = mail.sharexpress.in
 mydomain                = sharexpress.in
-myorigin                = $ mydomain
+myorigin                = $mydomain
 inet_interfaces         = all
 inet_protocols          = ipv4
 mydestination           = localhost.localdomain, localhost
